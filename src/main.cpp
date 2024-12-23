@@ -52,7 +52,9 @@ static void smartDelay(unsigned long ms){
 // YYYY-MM-DDTHH:MM:SS.fff
 void printTimestamp(void){
   char ts[64];
+  noInterrupts();
   sprintf(ts, "%04d-%02d-%02dT%02d:%02d:%02d.%03lu", year(), month(), day(), hour(), minute(), second(), (millis() - ppsTime) % 1000);
+  interrupts();
   Serial.println(ts);
 }
 
